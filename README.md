@@ -10,7 +10,7 @@ Ce projet est une petite API REST développée avec **[Mezzio](https://docs.mezz
 - API REST complète pour la ressource **Book**
 - Persistance dans un fichier **CSV** (`data/books.csv`)
 - Gestion d’erreurs avec réponses JSON
-- Validation des données entrantes (bonus)
+- Validation des données entrantes 
 - Architecture découpée : Handlers, Repository
 - Compatible avec Postman pour les tests
 

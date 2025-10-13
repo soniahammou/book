@@ -26,7 +26,6 @@ final class ReadBooksHandler implements RequestHandlerInterface
 
         try {
         $book = $this->repo->find($id);
-        // dump($book); die();
         return new JsonResponse(['book' => $book->toArray(),
     ],200);
             

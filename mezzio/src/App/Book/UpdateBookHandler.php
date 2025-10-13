@@ -29,7 +29,6 @@ final class UpdateBookHandler implements RequestHandlerInterface
     $id = $request->getAttribute('id');
 
     $data = json_decode($request->getBody()->getContents(), true);
-    // dump($request->getBody());die();
 
 
     if (!$data) {

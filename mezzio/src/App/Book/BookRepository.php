@@ -21,10 +21,8 @@ final class BookRepository implements BookRepositoryInterface
       fn($line) => str_getcsv($line, ',', '"', '\\'),
       explode("\n", trim($csvFileContent))
   );
-      // dump($lineContent[1]); die();
 
     $headers = $lineContent[0];
-    // dump($headers); die();
 
     $books = [];
 
@@ -46,7 +44,6 @@ final class BookRepository implements BookRepositoryInterface
         $row['Publisher'],
       );
     }
-    // dump($books); die();
 
     return $books;
   }
@@ -57,7 +54,6 @@ final class BookRepository implements BookRepositoryInterface
 
     if (!array_key_exists($id, $books)) {
 
-      // dump($books[$id]); die();
       throw new \RuntimeException("ressource inexistante");
 
     }
@@ -71,7 +67,6 @@ final class BookRepository implements BookRepositoryInterface
 
     $nextId = count($books) ? max(array_keys($books)) + 1 : 1;
 
-    // dump($nextId); die(); 
 
     $book = new Book(
       $nextId,
@@ -84,7 +79,6 @@ final class BookRepository implements BookRepositoryInterface
 
 
     $this->save($book);
-    // dump($book); die(); 
 
     return $book;
   }
@@ -95,14 +89,12 @@ final class BookRepository implements BookRepositoryInterface
   {
 
     $this->existingBook($id);
-    // dump($existingBook); die();
 
     $books = $this->findAll();
 
 
     $books[$id] = $book;
 
-    // reecriture du CSV COmplet
     $this->writeCsvFile($books);
 
 
@@ -153,7 +145,7 @@ final class BookRepository implements BookRepositoryInterface
   }
 
 
-    // reecriture du CSV COmplet
+    // reecriture du CSV Complet
   private function writeCsvFile(array $books){
 
     $fp = fopen($this->csvFile, 'w');

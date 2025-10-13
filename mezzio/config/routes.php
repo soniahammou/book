@@ -43,10 +43,10 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
 
     /* Routes for Books */
     $app->get('/books', App\Book\ListBooksHandler::class, 'books.list');
-    $app->get('/book/{id:\d+}', App\Book\ReadBooksHandler::class, 'book.read');
-    $app->post('/book', App\Book\CreateBooksHandler::class, 'book.create');
-    $app->put('/book/{id:\d+}', App\Book\UpdateBookHandler::class, 'book.update');
-    $app->delete('/book/{id:\d+}', App\Book\DeleteBooksHandler::class, 'book.delete');
+    $app->get('/books/{id:\d+}', App\Book\ReadBooksHandler::class, 'book.read');
+    $app->post('/books', App\Book\CreateBooksHandler::class, 'book.create');
+    $app->put('/books/{id:\d+}', App\Book\UpdateBookHandler::class, 'book.update');
+    $app->delete('/books/{id:\d+}', App\Book\DeleteBooksHandler::class, 'book.delete');
 
 
 };

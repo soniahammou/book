@@ -17,8 +17,11 @@ final class BookRepository implements BookRepositoryInterface
 
     $csvFileContent = file_get_contents($this->csvFile);
 
-    $lineContent = array_map("str_getcsv", explode("\n",  trim($csvFileContent)));
-    // dump($lineContent[1]); die();
+    $lineContent = array_map(
+      fn($line) => str_getcsv($line, ',', '"', '\\'),
+      explode("\n", trim($csvFileContent))
+  );
+      // dump($lineContent[1]); die();
 
     $headers = $lineContent[0];
     // dump($headers); die();

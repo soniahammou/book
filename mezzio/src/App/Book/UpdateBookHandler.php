@@ -2,62 +2,62 @@
 
 namespace App\Book;
 
-
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-
 final class UpdateBookHandler implements RequestHandlerInterface
 {
+    private BookRepository $bookRepository;
 
 
-  private BookRepository $bookRepository;
-
-
-
-  public function __construct(BookRepository $bookRepository)
-  {
-    $this->bookRepository = $bookRepository;
-  }
-
-
-
-  public function handle(ServerRequestInterface $request): ResponseInterface
-  {
-    $id = $request->getAttribute('id');
-
-    $data = json_decode($request->getBody()->getContents(), true);
-
-
-    if (!$data) {
-      return new JsonResponse(['error' => 'Corps JSON invalide'], 400);
+    public function __construct(BookRepository $bookRepository)
+    {
+        $this->bookRepository = $bookRepository;
     }
 
-    try {
 
-      $book = $this->bookRepository->find($id);
+    public function handle(ServerRequestInterface $request): ResponseInterface
+    {
+        $id = $request->getAttribute('id');
 
-  
-      if (isset($data['title']))     $book->setTitle($data['title']);
-      if (isset($data['author']))    $book->setAuthor($data['author']);
-      if (isset($data['genre']))     $book->setGenre($data['genre']);
-      if (isset($data['height']))    $book->setHeight($data['height']);
-      if (isset($data['publisher'])) $book->setPublisher($data['publisher']);
+        $data = json_decode($request->getBody()->getContents(), true);
 
+        if (!$data) {
+            return new JsonResponse(['error' => 'Corps JSON invalide'], 400);
+        }
+        try {
 
-      $updatedBook = $this->bookRepository->update($id, $book);
+            $book = $this->bookRepository->find($id);
 
-      return new JsonResponse([
-        'message' => 'modification réussie',
-        'book' => $updatedBook->toArray(),
-      ], 200);
+            if (isset($data['title'])) {
+                $book->setTitle($data['title']);
+            }
+            if (isset($data['author'])) {
+                $book->setAuthor($data['author']);
+            }
+            if (isset($data['genre'])) {
+                $book->setGenre($data['genre']);
+            }
+            if (isset($data['height'])) {
+                $book->setHeight($data['height']);
+            }
+            if (isset($data['publisher'])) {
+                $book->setPublisher($data['publisher']);
+            }
 
-    } catch (\RuntimeException $e) {
-      return new JsonResponse([
-        'error' => $e->getMessage(),
+            $updatedBook = $this->bookRepository->update($id, $book);
+
+            return new JsonResponse([
+              'message' => 'modification réussie',
+              'book' => $updatedBook->toArray(),
+            ], 200);
+
+        } catch (\RuntimeException $e) {
+            return new JsonResponse([
+              'error' => $e->getMessage(),
     ], 404);
+        }
     }
-  }
 }

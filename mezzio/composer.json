@@ -58,6 +58,7 @@
     },
     "require-dev": {
         "filp/whoops": "^2.15.4",
+        "friendsofphp/php-cs-fixer": "^3.88",
         "laminas/laminas-coding-standard": "~2.5.0",
         "laminas/laminas-development-mode": "^3.13.0",
         "mezzio/mezzio-tooling": "^2.10.1",

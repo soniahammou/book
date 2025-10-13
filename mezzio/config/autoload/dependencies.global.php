@@ -25,7 +25,7 @@ return [
         'factories' => [
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
             //  ListBooksHandler::class => fn() => new ListBooksHandler(),
-            BookRepository ::class => fn() => new BookRepository(__DIR__ . '/../../data/books.csv'),
+            BookRepository::class => fn () => new BookRepository(__DIR__ . '/../../data/books.csv'),
 
         ],
     ],

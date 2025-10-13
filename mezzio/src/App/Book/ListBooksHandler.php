@@ -2,17 +2,15 @@
 
 namespace App\Book;
 
-
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-
 final class ListBooksHandler implements RequestHandlerInterface
 {
-  
     private BookRepository $repo;
+
 
     public function __construct(BookRepository $repo)
     {
@@ -23,11 +21,10 @@ final class ListBooksHandler implements RequestHandlerInterface
     {
         $books = $this->repo->findAll();
 
-        $data = array_map(function($book) {
+        $data = array_map(function ($book) {
             return $book->toArray();
         }, $books);
 
-
-        return new JsonResponse(['books' => $data],200);
+        return new JsonResponse(['books' => $data], 200);
     }
 }

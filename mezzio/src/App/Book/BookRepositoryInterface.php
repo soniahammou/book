@@ -2,8 +2,6 @@
 
 namespace App\Book;
 
-
-
 interface BookRepositoryInterface
 {
     public function findAll(): array;

@@ -42,11 +42,11 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/api/ping', App\Handler\PingHandler::class, 'api.ping');
 
     /* Routes for Books */
-    $app->get('/books', App\Book\ListBooksHandler::class, 'books.list');
-    $app->get('/books/{id:\d+}', App\Book\ReadBooksHandler::class, 'book.read');
-    $app->post('/books', App\Book\CreateBooksHandler::class, 'book.create');
-    $app->put('/books/{id:\d+}', App\Book\UpdateBookHandler::class, 'book.update');
-    $app->delete('/books/{id:\d+}', App\Book\DeleteBooksHandler::class, 'book.delete');
+    $app->get('/books', App\Api\V1\Book\Handler\ListBooksHandler::class, 'books.list');
+    $app->get('/books/{id:\d+}', App\Api\V1\Book\Handler\ReadBooksHandler::class, 'book.read');
+    $app->post('/books', App\Api\V1\Book\Handler\CreateBooksHandler::class, 'book.create');
+    $app->put('/books/{id:\d+}', App\Api\V1\Book\Handler\UpdateBookHandler::class, 'book.update');
+    $app->delete('/books/{id:\d+}',App\Api\V1\Book\Handler\DeleteBooksHandler::class, 'book.delete');
 
 
 };

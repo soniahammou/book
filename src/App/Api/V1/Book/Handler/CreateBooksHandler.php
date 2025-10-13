@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Book;
+namespace App\Api\V1\Book\Handler;;
 
+use App\Api\V1\Book\BookRepository;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;

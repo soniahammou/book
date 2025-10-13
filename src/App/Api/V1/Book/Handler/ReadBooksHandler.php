@@ -1,35 +1,36 @@
 <?php
 
-namespace App\Book;
+namespace App\Api\V1\Book\Handler;
 
+use App\Api\V1\Book\BookRepository;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Psr\Http\Server\RequestHandlerInterface;
 
-final class DeleteBooksHandler implements RequestHandlerInterface
+final class ReadBooksHandler implements RequestHandlerInterface
 {
-    private BookRepository $bookRepository;
+    private BookRepository $repo;
 
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(BookRepository $repo)
     {
-        $this->bookRepository = $bookRepository;
+        $this->repo = $repo;
     }
 
-    
+
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $id = $request->getAttribute('id');
 
         try {
-            $this->bookRepository->delete($id);
-            return new JsonResponse([
-                'message' => "livre supprimé"
-            ], 200);
+            $book = $this->repo->find($id);
+            return new JsonResponse(['book' => $book->toArray(),
+    ], 200);
+
         } catch (\RuntimeException $e) {
             return new JsonResponse([
-                'error' => $e->getMessage()
+                'error' => $e->getMessage(),
             ], 404);
         }
     }

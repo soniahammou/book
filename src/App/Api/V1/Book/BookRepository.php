@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Book;
+namespace  App\Api\V1\Book;
 
 final class BookRepository implements BookRepositoryInterface
 {

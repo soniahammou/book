@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-use App\Book\BookRepository;
+use App\Api\V1\Book\BookRepository;
 use App\Book\ListBooksHandler;
 
 return [

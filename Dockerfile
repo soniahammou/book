@@ -21,3 +21,5 @@ EXPOSE 80
 RUN a2enmod rewrite
 
 CMD ["apache2-foreground"]
+
+# TODO: Corriger les droits d’écriture sur Docker (www-data ne peut pas écrire dans /data)

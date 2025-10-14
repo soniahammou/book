@@ -62,7 +62,7 @@
         "laminas/laminas-coding-standard": "~2.5.0",
         "laminas/laminas-development-mode": "^3.13.0",
         "mezzio/mezzio-tooling": "^2.10.1",
-        "phpunit/phpunit": "^10.5.45",
+        "phpunit/phpunit": "^10.5",
         "psalm/plugin-phpunit": "^0.19.2",
         "roave/security-advisories": "dev-master",
         "symfony/var-dumper": "^6.4",

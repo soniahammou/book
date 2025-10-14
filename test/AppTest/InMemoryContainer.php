@@ -27,7 +27,7 @@ final class InMemoryContainer implements ContainerInterface
      * @param string $id
      * @return mixed
      */
-    public function get($id)
+    public function get(string $id): mixed
     {
         if (! $this->has($id)) {
             throw new RuntimeException(sprintf('Service not found "%s"', $id));
@@ -40,7 +40,7 @@ final class InMemoryContainer implements ContainerInterface
      * @param string $id
      * @return bool
      */
-    public function has($id)
+    public function has(string $id): bool
     {
         return array_key_exists($id, $this->services);
     }

@@ -6,7 +6,11 @@ use App\Api\V1\Book\BookRepository;
 use App\Api\V1\Book\Handler\Factory\BookRepositoryFactory;
 use App\Api\V1\Book\BookRepositoryInterface;
 use App\Api\V1\Book\Handler\Factory\ListBooksHandlerFactory;
+use App\Api\V1\Book\Handler\Factory\ReadBooksHandlerFactory;
+use App\Api\V1\Book\Handler\Factory\UpdateBooksHandlerFactory;
 use App\Api\V1\Book\Handler\ListBooksHandler;
+use App\Api\V1\Book\Handler\ReadBooksHandler;
+use App\Api\V1\Book\Handler\UpdateBooksHandler;
 
 return [
     // Provides application-wide services.
@@ -30,6 +34,9 @@ return [
             // Fully\Qualified\ClassName::class => Fully\Qualified\FactoryName::class,
             BookRepository::class => BookRepositoryFactory::class,
             ListBooksHandler::class => ListBooksHandlerFactory::class,
+            ReadBooksHandler::class => ReadBooksHandlerFactory::class,
+            UpdateBooksHandler::class => UpdateBooksHandlerFactory::class,
+
         ],
     ],
 ];

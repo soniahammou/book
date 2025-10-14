@@ -5,5 +5,8 @@ services:
     ports:
       - "8080:80"
     volumes:
+      - ./src:/var/www/html/src
+      - ./public:/var/www/html/public
+      - ./composer.json:/var/www/html/composer.json
+      - ./composer.lock:/var/www/html/composer.lock
       - .:/var/www/html
-

@@ -45,7 +45,7 @@ return static function (Application $app, MiddlewareFactory $factory, ContainerI
     $app->get('/books', App\Api\V1\Book\Handler\ListBooksHandler::class, 'books.list');
     $app->get('/books/{id:\d+}', App\Api\V1\Book\Handler\ReadBooksHandler::class, 'book.read');
     $app->post('/books', App\Api\V1\Book\Handler\CreateBooksHandler::class, 'book.create');
-    $app->put('/books/{id:\d+}', App\Api\V1\Book\Handler\UpdateBookHandler::class, 'book.update');
+    $app->put('/books/{id:\d+}', App\Api\V1\Book\Handler\UpdateBooksHandler::class, 'book.update');
     $app->delete('/books/{id:\d+}',App\Api\V1\Book\Handler\DeleteBooksHandler::class, 'book.delete');
 
 

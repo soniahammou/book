@@ -2,7 +2,7 @@
 
 namespace App\Api\V1\Book\Handler;
 
-use App\Api\V1\Book\BookRepository;
+use App\Api\V1\Book\BookRepositoryInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,14 +10,15 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class ListBooksHandler implements RequestHandlerInterface
 {
-    private BookRepository $repo;
 
+    private BookRepositoryInterface  $repo;
 
-    public function __construct(BookRepository $repo)
+    public function __construct(BookRepositoryInterface $repo)
     {
         $this->repo = $repo;
     }
 
+    
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $books = $this->repo->findAll();

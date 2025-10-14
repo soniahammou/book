@@ -6,7 +6,6 @@ final class BookRepository implements BookRepositoryInterface
 {
     private string $csvFile;
 
-
     public function __construct(string $csvFile)
     {
         $this->csvFile = $csvFile;

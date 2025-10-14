@@ -5,6 +5,8 @@ declare(strict_types=1);
 use App\Api\V1\Book\BookRepository;
 use App\Api\V1\Book\Handler\Factory\BookRepositoryFactory;
 use App\Api\V1\Book\BookRepositoryInterface;
+use App\Api\V1\Book\Handler\DeleteBooksHandler;
+use App\Api\V1\Book\Handler\Factory\DeleteBooksHandlerFactory;
 use App\Api\V1\Book\Handler\Factory\ListBooksHandlerFactory;
 use App\Api\V1\Book\Handler\Factory\ReadBooksHandlerFactory;
 use App\Api\V1\Book\Handler\Factory\UpdateBooksHandlerFactory;
@@ -36,6 +38,7 @@ return [
             ListBooksHandler::class => ListBooksHandlerFactory::class,
             ReadBooksHandler::class => ReadBooksHandlerFactory::class,
             UpdateBooksHandler::class => UpdateBooksHandlerFactory::class,
+            DeleteBooksHandler::class => DeleteBooksHandlerFactory::class,
 
         ],
     ],

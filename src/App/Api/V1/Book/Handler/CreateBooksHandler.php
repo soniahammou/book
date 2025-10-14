@@ -23,7 +23,6 @@ final class CreateBooksHandler implements RequestHandlerInterface
     {
         $data = json_decode($request->getBody()->getContents(), true);
         if (!$data) {
-           // return new JsonResponse(['error' => 'Invalid JSON body'], 400);
            $data = $request->getParsedBody();
 
         }

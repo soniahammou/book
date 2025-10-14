@@ -2,7 +2,7 @@
 
 namespace App\Api\V1\Book\Handler;;
 
-use App\Api\V1\Book\BookRepository;
+use App\Api\V1\Book\BookRepositoryInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,12 +10,12 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class CreateBooksHandler implements RequestHandlerInterface
 {
-    private BookRepository $bookRepository;
+    private BookRepositoryInterface $repo;
 
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(BookRepositoryInterface $repo)
     {
-        $this->bookRepository = $bookRepository;
+        $this->repo = $repo;
     }
 
 
@@ -27,7 +27,7 @@ final class CreateBooksHandler implements RequestHandlerInterface
             return new JsonResponse(['error' => 'Invalid JSON body'], 400);
         }
 
-        $book = $this->bookRepository->create($data);
+        $book = $this->repo->create($data);
 
         return new JsonResponse($book->toArray(), 201);
     }

@@ -2,7 +2,7 @@
 
 namespace App\Api\V1\Book\Handler;
 
-use App\Api\V1\Book\BookRepository;
+use App\Api\V1\Book\BookRepositoryInterface;
 use Laminas\Diactoros\Response\JsonResponse;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,12 +10,12 @@ use Psr\Http\Server\RequestHandlerInterface;
 
 final class UpdateBooksHandler implements RequestHandlerInterface
 {
-    private BookRepository $bookRepository;
+    private BookRepositoryInterface $repo;
 
 
-    public function __construct(BookRepository $bookRepository)
+    public function __construct(BookRepositoryInterface $repo)
     {
-        $this->bookRepository = $bookRepository;
+        $this->repo = $repo;
     }
 
 
@@ -30,7 +30,7 @@ final class UpdateBooksHandler implements RequestHandlerInterface
         }
         try {
 
-            $book = $this->bookRepository->find($id);
+            $book = $this->repo->find($id);
 
             if (isset($data['title'])) {
                 $book->setTitle($data['title']);
@@ -48,7 +48,7 @@ final class UpdateBooksHandler implements RequestHandlerInterface
                 $book->setPublisher($data['publisher']);
             }
 
-            $updatedBook = $this->bookRepository->update($id, $book);
+            $updatedBook = $this->repo->update($id, $book);
 
             return new JsonResponse([
               'message' => 'modification réussie',

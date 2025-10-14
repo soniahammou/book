@@ -15,7 +15,8 @@ final class DeleteBooksHandlerTest  extends TestCase
   public function testDeleteBookReturnsSuccessMessage(): void
   {
     $repo = $this->createMock(BookRepositoryInterface::class);
-    $repo->method('delete')->willReturn(true);
+    $repo->expects($this->once())
+         ->method('delete');
 
     $handler = new DeleteBooksHandler($repo);
 
@@ -23,8 +24,12 @@ final class DeleteBooksHandlerTest  extends TestCase
 
     $response = $handler->handle($request);
 
+    $body = (string) $response->getBody();
+    $json = json_decode($body, true);
+    
     $this->assertEquals(200, $response->getStatusCode());
-    $this->assertStringContainsString('livre supprimé', (string) $response->getBody());
+    $this->assertEquals('livre supprimé', $json['message']);
+
   }
 
   
@@ -43,7 +48,10 @@ final class DeleteBooksHandlerTest  extends TestCase
     $request = (new ServerRequest())->withAttribute('id', 20);
     $response = $handler->handle($request);
 
+    $body = (string) $response->getBody();
+    $json = json_decode($body, true);
+
     $this->assertEquals(404, $response->getStatusCode());
-    $this->assertStringContainsString('livre introuvable', (string) $response->getBody());
+    $this->assertEquals('livre introuvable', $json['error']);
   }
 }

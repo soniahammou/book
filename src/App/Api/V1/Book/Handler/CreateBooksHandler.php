@@ -22,9 +22,10 @@ final class CreateBooksHandler implements RequestHandlerInterface
     public function handle(ServerRequestInterface $request): ResponseInterface
     {
         $data = json_decode($request->getBody()->getContents(), true);
-
         if (!$data) {
-            return new JsonResponse(['error' => 'Invalid JSON body'], 400);
+           // return new JsonResponse(['error' => 'Invalid JSON body'], 400);
+           $data = $request->getParsedBody();
+
         }
 
         $book = $this->repo->create($data);
@@ -32,4 +33,4 @@ final class CreateBooksHandler implements RequestHandlerInterface
         return new JsonResponse($book->toArray(), 201);
     }
 
-}
+}   
